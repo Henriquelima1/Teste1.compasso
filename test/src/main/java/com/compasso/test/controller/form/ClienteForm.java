@@ -27,26 +27,17 @@ public class ClienteForm {
 	private int idade;
 	
 	@NotNull @NotEmpty
-	private String nomeCidade;
-	
-	@NotNull @NotEmpty
-	private String nomeEstado;
+	private Long idCidade;
 	
 
-	public String getNomeEstado() {
-		return nomeEstado;
+
+
+	public Long getIdCidade() {
+		return idCidade;
 	}
 
-	public void setNomeEstado(String nomeEstado) {
-		this.nomeEstado = nomeEstado;
-	}
-
-	public String getNomeCidade() {
-		return nomeCidade;
-	}
-
-	public void setNomeCidade(String nomeCidade) {
-		this.nomeCidade = nomeCidade;
+	public void setIdCidade(Long idCidade) {
+		this.idCidade = idCidade;
 	}
 
 	public String getNome() {
@@ -83,8 +74,8 @@ public class ClienteForm {
 	
 	
 	public Cliente converter(CidadeRepository cidadeRepository) {
-		Cidade cidadeConverte = cidadeRepository.findByCidade(nomeCidade, nomeEstado);
-		return new Cliente(nome, sexo, dataNasci, idade, nomeCidade, nomeEstado, cidadeConverte);
+		Cidade cidadeConverte = cidadeRepository.findByCidade(idCidade);
+		return new Cliente(nome, sexo, dataNasci, idade, idCidade, cidadeConverte);
 	}
 	
 	

@@ -19,22 +19,20 @@ public class Cliente {
 	private String sexo;
 	private LocalDateTime dataNasci;
 	private int idade;
-	private String nomeCidade;
-	private String nomeEstado;
+	private Long idCidade;
 	
 	@OneToOne
 	private Cidade cidade;
 	
 	
-	public Cliente( String nome, String sexo, LocalDateTime dataNasci, int idade, String nomeCidade,
-			String nomeEstado, Cidade cidade) {
+	public Cliente( String nome, String sexo, LocalDateTime dataNasci, int idade, Long idCidade, Cidade cidade) {
 		super();
 		this.nome = nome;
 		this.sexo = sexo;
 		this.dataNasci = dataNasci;
 		this.idade = idade;
-		this.nomeCidade = nomeCidade;
-		this.nomeEstado = nomeEstado;
+		this.idCidade = idCidade;
+	
 		this.cidade = cidade;
 	}
 	public Long getId() {
@@ -67,17 +65,12 @@ public class Cliente {
 	public void setIdade(int idade) {
 		this.idade = idade;
 	}
-	public String getNomeCidade() {
-		return nomeCidade;
+
+	public Long getIdCidade() {
+		return idCidade;
 	}
-	public void setNomeCidade(String nomeCidade) {
-		this.nomeCidade = nomeCidade;
-	}
-	public String getNomeEstado() {
-		return nomeEstado;
-	}
-	public void setNomeEstado(String nomeEstado) {
-		this.nomeEstado = nomeEstado;
+	public void setIdCidade(Long idCidade) {
+		this.idCidade = idCidade;
 	}
 	public Cidade getCidade() {
 		return cidade;

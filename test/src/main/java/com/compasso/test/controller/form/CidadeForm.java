@@ -4,6 +4,10 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.compasso.test.modelo.Cidade;
+
+import com.compasso.test.repository.ClienteRepository;
+
 public class CidadeForm {
 
 	@NotNull @NotEmpty
@@ -24,6 +28,10 @@ public class CidadeForm {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
+	public Cidade puxar(ClienteRepository clienteRepository) {
+		return new Cidade( nome, estado);
+	}
+	
 	
 	
 }

@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.compasso.test.controller.dto.ClienteDto;
@@ -71,15 +70,7 @@ public class ClienteController {
 		return ResponseEntity.ok(new ClienteDto(cliente));
 	}
 	
-	@RequestMapping("/alteraraNomeCliente/{nome}/{nomeAlt}")
-	public ResponseEntity<?> alteraraNomeCliente(@PathVariable("nome") String nome,@PathVariable("nomeAlt") String nomeAlt) {
-		Cliente clienteAlt = clienteRepository.findByNome(nome);
-		clienteAlt.setNome(nomeAlt);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().replacePath("/Cliente").path("/{id}")
-				.buildAndExpand(clienteAlt.getId()).toUri();
-		return ResponseEntity.created(uri).build();
-		
-	}
+	
 
 	
 

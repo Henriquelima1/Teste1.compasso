@@ -14,7 +14,7 @@ public class Cidade {
 	private String estado;
 	
 	
-	public Cidade(Long id, String nome, String estado) {
+	public Cidade(String nome, String estado) {
 		super();
 		this.nome = nome;
 		this.estado = estado;

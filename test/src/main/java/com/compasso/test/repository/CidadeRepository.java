@@ -8,6 +8,8 @@ import com.compasso.test.modelo.Cidade;
 @Repository
 public interface CidadeRepository extends JpaRepository<Cidade, Long>{
 
-	Cidade findByCidade(String nome, String estado);
+	Cidade findByCidadeNome(String nome, String estado);
+	
+	Cidade findByCidade(Long id);
 	
 }
