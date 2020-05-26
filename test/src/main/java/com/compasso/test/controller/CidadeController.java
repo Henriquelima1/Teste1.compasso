@@ -2,6 +2,7 @@ package com.compasso.test.controller;
 
 import java.net.URI;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,8 @@ public class CidadeController {
 	@Autowired
 	ClienteRepository clienteRepository;
 	
-	@PostMapping
+	@PostMapping("/cadastroCidade")
+	@Transactional
 	public ResponseEntity<CidadeDto> cadastroCidade(@RequestBody @Valid CidadeForm form, UriComponentsBuilder uriBuilder) {
 		Cidade cidade = form.puxar(clienteRepository);
 		
@@ -38,9 +40,9 @@ public class CidadeController {
 		
 		return ResponseEntity.created(uri).body(new CidadeDto(cidade));
 	}
-	@GetMapping("/{nome}/{estado}")
+	@GetMapping("/consultaCidade/{nome}/{estado}")
 	public  ResponseEntity<Cidade> consultaCidade(@PathVariable("nome") String nome,@PathVariable("estado") String estado){
-		return ResponseEntity.ok().body(cidadeRepository.findByCidadeNome(nome, estado));
+		return ResponseEntity.ok().body(cidadeRepository.findByNomeCidade(nome, estado));
 	}
 	
 }

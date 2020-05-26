@@ -34,7 +34,8 @@ public class ClienteController {
 	@Autowired
 	CidadeRepository cidadeRepository;
 	
-	@PostMapping
+	@PostMapping("/cadastroCliente")
+	@Transactional
 	public ResponseEntity<ClienteDto> cadastroCliente( @RequestBody @Valid ClienteForm form, UriComponentsBuilder uriBuilder){
 		Cliente cliente = form.converter(cidadeRepository);
 		
@@ -52,6 +53,7 @@ public class ClienteController {
 		return ResponseEntity.ok().body(clienteRepository.findById(id).get());
 	}
 	@DeleteMapping("/removerCliente/{id}")
+	@Transactional
 	public ResponseEntity<?> removerCliente(@PathVariable Long id){
 		Optional<Cliente> optinal = clienteRepository.findById(id);
 		
@@ -65,9 +67,12 @@ public class ClienteController {
 	@PutMapping("/atualizarNomeCliente/{id}")
 	@Transactional
 	public ResponseEntity<ClienteDto> atualizarNomeCliente(@PathVariable Long id, @RequestBody @Valid AtualizacaoClienteForm form){
-		Cliente cliente = form.atualizar(id, clienteRepository);
-		
-		return ResponseEntity.ok(new ClienteDto(cliente));
+		Optional<Cliente> optional = clienteRepository.findById(id);
+		if(optional.isPresent()) {
+			Cliente cliente = form.atualizar(id, clienteRepository);
+			return ResponseEntity.ok(new ClienteDto(cliente));
+		}
+		return ResponseEntity.notFound().build();		
 	}
 	
 	
