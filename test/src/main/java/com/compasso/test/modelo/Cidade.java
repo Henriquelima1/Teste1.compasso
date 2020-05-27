@@ -9,7 +9,7 @@ import javax.persistence.Id;
 public class Cidade {
 	
 	@Id@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long idCidade;
 	private String nome;
 	private String estado;
 	
@@ -19,11 +19,11 @@ public class Cidade {
 		this.nome = nome;
 		this.estado = estado;
 	}
-	public Long getId() {
-		return id;
+	public Long getIdCidade() {
+		return idCidade;
 	}
-	public void setId(Long id) {
-		this.id = id;
+	public void setIdCidade(Long id) {
+		this.idCidade = id;
 	}
 	public String getNome() {
 		return nome;

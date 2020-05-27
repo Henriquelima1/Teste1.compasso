@@ -74,7 +74,7 @@ public class ClienteForm {
 	
 	
 	public Cliente converter(CidadeRepository cidadeRepository) {
-		Cidade cidadeConverte = cidadeRepository.findByCidade(idCidade);
+		Cidade cidadeConverte = cidadeRepository.findByIdCidade(idCidade);
 		return new Cliente(nome, sexo, dataNasci, idade, idCidade, cidadeConverte);
 	}
 	

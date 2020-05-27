@@ -36,13 +36,13 @@ public class CidadeController {
 	public ResponseEntity<CidadeDto> cadastroCidade(@RequestBody @Valid CidadeForm form, UriComponentsBuilder uriBuilder) {
 		Cidade cidade = form.puxar(clienteRepository);
 		
-		URI uri = uriBuilder.path("/cadastrarCidade/{id}").buildAndExpand(cidade.getId()).toUri();
+		URI uri = uriBuilder.path("/cadastrarCidade/{id}").buildAndExpand(cidade.getIdCidade()).toUri();
 		
 		return ResponseEntity.created(uri).body(new CidadeDto(cidade));
 	}
 	@GetMapping("/consultaCidade/{nome}/{estado}")
 	public  ResponseEntity<Cidade> consultaCidade(@PathVariable("nome") String nome,@PathVariable("estado") String estado){
-		return ResponseEntity.ok().body(cidadeRepository.findByNomeCidade(nome, estado));
+		return ResponseEntity.ok().body(cidadeRepository.findByNomeAndEstado(nome, estado));
 	}
 	
 }

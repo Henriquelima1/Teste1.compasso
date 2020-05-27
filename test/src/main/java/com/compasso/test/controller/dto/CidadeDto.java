@@ -4,19 +4,19 @@ import com.compasso.test.modelo.Cidade;
 
 public class CidadeDto {
 
-	private Long id;
+	private Long idCidade;
 	
 	private String nome;
 	private String estado;
 	
 	public CidadeDto(Cidade cidade) {
-		this.id = cidade.getId();
+		this.idCidade = cidade.getIdCidade();
 		this.nome = cidade.getNome();
 		this.estado = cidade.getEstado();
 
 	}
-	public Long getId() {
-		return id;
+	public Long getIdCidade() {
+		return idCidade;
 	}
 	public String getNome() {
 		return nome;
