@@ -2,8 +2,6 @@ package com.compasso.test.controller.dto;
 
 import java.time.LocalDateTime;
 
-import org.springframework.data.domain.Page;
-
 import com.compasso.test.modelo.Cliente;
 
 
@@ -51,15 +49,15 @@ public class ClienteDto {
 		return idade;
 	}
 	
-	//Metodo trocado de "List" para "Page" para paginação
-	
-		public static Page<ClienteDto> converter(Page<Cliente> cliente) {
-			//"(ClienteDto::new)" para pegar o construtor
-			
-			return cliente.map(ClienteDto::new);
-			
-			//Codigo sendo Ajustado para a Paginação
-			//return cliente.stream().map(ClienteDto::new).collect(Collectors.toList());
-		}
+//	//Metodo trocado de "List" para "Page" para paginação
+//	
+//		public static Page<ClienteDto> converter(Page<Cliente> cliente) {
+//			//"(ClienteDto::new)" para pegar o construtor
+//			
+//			return cliente.map(ClienteDto::new);
+//			
+//			//Codigo sendo Ajustado para a Paginação
+//			//return cliente.stream().map(ClienteDto::new).collect(Collectors.toList());
+//		}
 	
 }
