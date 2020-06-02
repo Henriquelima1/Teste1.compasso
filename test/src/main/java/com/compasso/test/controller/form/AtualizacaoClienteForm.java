@@ -3,7 +3,7 @@ package com.compasso.test.controller.form;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import com.compasso.test.modelo.Cliente;
+import com.compasso.test.entidades.Cliente;
 import com.compasso.test.repository.ClienteRepository;
 
 public class AtualizacaoClienteForm {

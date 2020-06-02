@@ -1,6 +1,5 @@
 package com.compasso.test.controller;
 
-import java.net.URI;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
@@ -17,28 +16,39 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.compasso.test.controller.dto.CidadeDto;
 import com.compasso.test.controller.form.CidadeForm;
-import com.compasso.test.modelo.Cidade;
+import com.compasso.test.entidades.Cidade;
 import com.compasso.test.repository.CidadeRepository;
 import com.compasso.test.repository.ClienteRepository;
+
+import com.compasso.test.service.CidadeService;
 
 @RestController
 @RequestMapping("/Cidade")
 public class CidadeController {
 
-	@Autowired
-	CidadeRepository cidadeRepository;
+
 	
 	@Autowired
 	ClienteRepository clienteRepository;
+	@Autowired
+	CidadeRepository cidadeRepository;
+	
+	private final CidadeService cidadeService;
+
+	
+
+	
+	
+	@Autowired
+	public CidadeController(CidadeService cidadeService) {
+		this.cidadeService = cidadeService;
+	}
 	
 	@PostMapping("/cadastroCidade")
 	@Transactional
 	public ResponseEntity<CidadeDto> cadastroCidade(@RequestBody @Valid CidadeForm form, UriComponentsBuilder uriBuilder) {
-		Cidade cidade = form.puxar(clienteRepository);
 		
-		URI uri = uriBuilder.path("/cadastrarCidade/{id}").buildAndExpand(cidade.getIdCidade()).toUri();
-		
-		return ResponseEntity.created(uri).body(new CidadeDto(cidade));
+		return cidadeService.cadastrar(form, uriBuilder);
 	}
 	@GetMapping("/consultaCidade/{nome}/{estado}")
 	public  ResponseEntity<Cidade> consultaCidade(@PathVariable("nome") String nome,@PathVariable("estado") String estado){

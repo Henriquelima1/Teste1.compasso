@@ -6,8 +6,8 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.compasso.test.modelo.Cidade;
-import com.compasso.test.modelo.Cliente;
+import com.compasso.test.entidades.Cidade;
+import com.compasso.test.entidades.Cliente;
 import com.compasso.test.repository.CidadeRepository;
 
 

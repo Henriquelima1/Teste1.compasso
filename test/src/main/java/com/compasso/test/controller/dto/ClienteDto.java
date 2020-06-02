@@ -2,7 +2,7 @@ package com.compasso.test.controller.dto;
 
 import java.time.LocalDateTime;
 
-import com.compasso.test.modelo.Cliente;
+import com.compasso.test.entidades.Cliente;
 
 
 
