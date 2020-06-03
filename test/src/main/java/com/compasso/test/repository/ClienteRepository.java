@@ -5,8 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import com.compasso.test.entidades.Cliente;
 
-
-
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 

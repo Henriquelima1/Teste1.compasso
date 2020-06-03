@@ -7,8 +7,9 @@ import com.compasso.test.entidades.Cliente;
 import com.compasso.test.repository.ClienteRepository;
 
 public class AtualizacaoClienteForm {
-	
-	@NotNull @NotEmpty
+
+	@NotNull
+	@NotEmpty
 	private String nome;
 
 	public String getNome() {
@@ -21,12 +22,10 @@ public class AtualizacaoClienteForm {
 
 	public Cliente atualizar(Long id, ClienteRepository clienteRepository) {
 		Cliente cliente = clienteRepository.getOne(id);
-		
+
 		cliente.setNome(this.nome);
-		
+
 		return cliente;
 	}
-	
-	
 
 }

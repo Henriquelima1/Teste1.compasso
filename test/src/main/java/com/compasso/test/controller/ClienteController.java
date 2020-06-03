@@ -1,6 +1,5 @@
 package com.compasso.test.controller;
 
-
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
@@ -27,54 +26,44 @@ import com.compasso.test.service.ClienteService;
 @RestController
 @RequestMapping("/Cliente")
 public class ClienteController {
-	
+
 	@Autowired
 	ClienteRepository clienteRepository;
 	@Autowired
 	CidadeRepository cidadeRepository;
-	
-	private ClienteService clienteService;
-	
 	@Autowired
-	public ClienteController(ClienteService clienteService ) {
-		this.clienteService= clienteService;
-	}
-	
+	private ClienteService clienteService;
+
 	@PostMapping("/cadastroCliente")
 	@Transactional
-	public ResponseEntity<ClienteDto> cadastroCliente( @RequestBody @Valid ClienteForm form, UriComponentsBuilder uriBuilder){
-	
+	public ResponseEntity<ClienteDto> cadastroCliente(@RequestBody @Valid ClienteForm form,
+			UriComponentsBuilder uriBuilder) {
+
 		return clienteService.cadastrar(form, uriBuilder);
-		
+
 	}
-	
+
 	@GetMapping("/consultaCliente/{nome}")
-	public  ResponseEntity<Cliente> consultaNome(@PathVariable String nome){
+	public ResponseEntity<Cliente> consultaNome(@PathVariable String nome) {
 		return ResponseEntity.ok().body(clienteRepository.findByNome(nome));
 	}
-	
-	
+
 	@GetMapping("/consultaCliente/{id}")
-	public  ResponseEntity<Cliente> consultaId(@PathVariable Long id){
+	public ResponseEntity<Cliente> consultaId(@PathVariable Long id) {
 		return ResponseEntity.ok().body(clienteRepository.findById(id).get());
 	}
-	
-	
+
 	@DeleteMapping("/removerCliente/{id}")
 	@Transactional
-	public ResponseEntity<?> removerCliente(@PathVariable Long id){
+	public ResponseEntity<?> removerCliente(@PathVariable Long id) {
 		return clienteService.remover(id);
 	}
-	
-	
+
 	@PutMapping("/atualizarNomeCliente/{id}")
 	@Transactional
-	public ResponseEntity<ClienteDto> atualizarNomeCliente(@PathVariable Long id, @RequestBody @Valid AtualizacaoClienteForm form){
-		return clienteService.atualizarNomeCliente(id, form);	
+	public ResponseEntity<ClienteDto> atualizarNomeCliente(@PathVariable Long id,
+			@RequestBody @Valid AtualizacaoClienteForm form) {
+		return clienteService.atualizarNomeCliente(id, form);
 	}
-	
-	
-
-	
 
 }

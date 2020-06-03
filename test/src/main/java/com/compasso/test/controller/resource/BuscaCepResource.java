@@ -13,16 +13,15 @@ import com.compasso.test.service.BuscaCepService;
 public class BuscaCepResource {
 
 	private static final RestTemplate Endereco = null;
-	
+
 	private Cidade cidade;
-	
-	
+
 	@Autowired
 	private BuscaCepService buscaCepService;
-	
+
 	public String find() {
 		buscaCepService.find(Endereco, cidade.getCep());
 		return Endereco.toString();
 	}
-	
+
 }

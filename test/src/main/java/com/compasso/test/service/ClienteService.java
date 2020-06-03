@@ -33,7 +33,7 @@ public class ClienteService {
 
 	public ResponseEntity<ClienteDto> cadastrar(@Valid ClienteForm form, UriComponentsBuilder uriBuilder) {
 		Cliente cliente = form.converter(cidadeRepository);
-
+		clienteRepository.save(cliente);
 		URI uri = uriBuilder.path("/cadastrar/{id}").buildAndExpand(cliente.getId()).toUri();
 
 		return ResponseEntity.created(uri).body(new ClienteDto(cliente));
@@ -41,7 +41,6 @@ public class ClienteService {
 	
 	public ResponseEntity<Object> remover(Long id) {
 		Optional<Cliente> optinal = clienteRepository.findById(id);
-		
 		
 		if(optinal.isPresent()) {
 			clienteRepository.deleteById(id);

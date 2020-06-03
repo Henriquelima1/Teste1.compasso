@@ -10,27 +10,28 @@ import com.compasso.test.entidades.Cidade;
 import com.compasso.test.entidades.Cliente;
 import com.compasso.test.repository.CidadeRepository;
 
-
-
 public class ClienteForm {
 
-	@NotNull @NotEmpty
+	@NotNull
+	@NotEmpty
 	private String nome;
-	
-	@NotNull @NotEmpty @Size(min=2, max=2)
+
+	@NotNull
+	@NotEmpty
+	@Size(min = 2, max = 2)
 	private String sexo;
-	
-	@NotNull @NotEmpty
+
+	@NotNull
+	@NotEmpty
 	private LocalDateTime dataNasci;
-	
-	@NotNull @NotEmpty
+
+	@NotNull
+	@NotEmpty
 	private int idade;
-	
-	@NotNull @NotEmpty
+
+	@NotNull
+	@NotEmpty
 	private Long idCidade;
-	
-
-
 
 	public Long getIdCidade() {
 		return idCidade;
@@ -71,12 +72,10 @@ public class ClienteForm {
 	public void setIdade(int idade) {
 		this.idade = idade;
 	}
-	
-	
+
 	public Cliente converter(CidadeRepository cidadeRepository) {
 		Cidade cidadeConverte = cidadeRepository.findByIdCidade(idCidade);
 		return new Cliente(nome, sexo, dataNasci, idade, idCidade, cidadeConverte);
 	}
-	
-	
+
 }

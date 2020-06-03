@@ -1,6 +1,5 @@
 package com.compasso.test.controller;
 
-
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
@@ -26,33 +25,22 @@ import com.compasso.test.service.CidadeService;
 @RequestMapping("/Cidade")
 public class CidadeController {
 
-
-	
 	@Autowired
 	ClienteRepository clienteRepository;
 	@Autowired
 	CidadeRepository cidadeRepository;
-	
-	private final CidadeService cidadeService;
-
-	
-
-	
-	
 	@Autowired
-	public CidadeController(CidadeService cidadeService) {
-		this.cidadeService = cidadeService;
-	}
-	
+	private CidadeService cidadeService;
+
 	@PostMapping("/cadastroCidade")
 	@Transactional
-	public ResponseEntity<CidadeDto> cadastroCidade(@RequestBody @Valid CidadeForm form, UriComponentsBuilder uriBuilder) {
-		
+	public ResponseEntity<CidadeDto> cadastroCidade(@RequestBody @Valid CidadeForm form,UriComponentsBuilder uriBuilder) {
 		return cidadeService.cadastrar(form, uriBuilder);
 	}
+
 	@GetMapping("/consultaCidade/{nome}/{estado}")
-	public  ResponseEntity<Cidade> consultaCidade(@PathVariable("nome") String nome,@PathVariable("estado") String estado){
-		return ResponseEntity.ok().body(cidadeRepository.findByNomeAndEstado(nome, estado));
+	public ResponseEntity<Cidade> consultaCidade(@PathVariable("nome") String nome,@PathVariable("estado") String estado) {
+		return cidadeService.consultar(nome, estado);
 	}
-	
+
 }
