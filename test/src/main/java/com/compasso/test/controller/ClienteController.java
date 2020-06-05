@@ -4,6 +4,7 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -43,14 +43,14 @@ public class ClienteController {
 		return clienteService.cadastrar(form, uriBuilder);
 
 	}
-
-	@GetMapping("/consultaCliente/consultaNome/{nome}")
-	public ResponseEntity<Cliente> consultaNome(@PathVariable @RequestParam(value="name", required = false) String nome) {
+	
+	@GetMapping("/consultaCliente/consultarNome/{nome}")
+	public ResponseEntity<Cliente> consultaNome(@Param(value = "nome") String nome ) {
 		return ResponseEntity.ok().body(clienteRepository.findByNome(nome));
 	}
 
-	@GetMapping("/consultaCliente/consultaId/{id}")
-	public ResponseEntity<Cliente> consultaId(@PathVariable @RequestParam(value="id", required = false) Long id) {
+	@GetMapping("/consultaCliente/{id}")
+	public ResponseEntity<Cliente> consultaId(@PathVariable Long id) {
 		return ResponseEntity.ok().body(clienteRepository.findById(id).get());
 	}
 

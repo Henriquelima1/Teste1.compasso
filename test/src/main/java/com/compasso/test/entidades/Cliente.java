@@ -33,7 +33,9 @@ public class Cliente {
 
 		this.cidade = cidade;
 	}
-
+	public Cliente() {
+		
+	}
 	public Long getId() {
 		return id;
 	}
