@@ -8,7 +8,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
+
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.compasso.test.controller.dto.CidadeDto;
@@ -33,9 +33,9 @@ public class CidadeService {
 		return ResponseEntity.created(uri).body(new CidadeDto(cidade));
 	}
 
-	public ResponseEntity<Cidade> consultar(@PathVariable String nome, @PathVariable String estado) {
+	public ResponseEntity<Cidade> consultar( String nome, String estado) {
 		
-		Optional<Cidade> optional = cidadeRepository.findByNomeAndEstado(nome, estado);
+		Optional<Cidade> optional = Optional.of(cidadeRepository.findByNomeAndEstado(nome, estado));
 		if(optional.isPresent()) {
 			Cidade cidade =cidadeRepository.findByNomeAndEstado(nome, estado);
 			return ResponseEntity.ok(cidade);

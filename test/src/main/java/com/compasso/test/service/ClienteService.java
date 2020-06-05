@@ -8,7 +8,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
+
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -50,7 +50,7 @@ public class ClienteService {
 		return ResponseEntity.notFound().build();
 	}
 	
-	public ResponseEntity<ClienteDto> atualizarNomeCliente(@PathVariable Long id, @RequestBody @Valid AtualizacaoClienteForm form){
+	public ResponseEntity<ClienteDto> atualizarNomeCliente( Long id, @RequestBody @Valid AtualizacaoClienteForm form){
 		Optional<Cliente> optional = clienteRepository.findById(id);
 		if(optional.isPresent()) {
 			Cliente cliente = form.atualizar(id, clienteRepository);

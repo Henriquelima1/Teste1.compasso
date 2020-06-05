@@ -21,6 +21,9 @@ public class Cidade {
 		this.estado = estado;
 		this.cep = cep;
 	}
+	public Cidade() {
+		
+	}
 
 	public Long getIdCidade() {
 		return idCidade;

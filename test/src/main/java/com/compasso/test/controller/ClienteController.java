@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -43,13 +44,13 @@ public class ClienteController {
 
 	}
 
-	@GetMapping("/consultaCliente/{nome}")
-	public ResponseEntity<Cliente> consultaNome(@PathVariable String nome) {
+	@GetMapping("/consultaCliente/consultaNome/{nome}")
+	public ResponseEntity<Cliente> consultaNome(@PathVariable @RequestParam(value="name", required = false) String nome) {
 		return ResponseEntity.ok().body(clienteRepository.findByNome(nome));
 	}
 
-	@GetMapping("/consultaCliente/{id}")
-	public ResponseEntity<Cliente> consultaId(@PathVariable Long id) {
+	@GetMapping("/consultaCliente/consultaId/{id}")
+	public ResponseEntity<Cliente> consultaId(@PathVariable @RequestParam(value="id", required = false) Long id) {
 		return ResponseEntity.ok().body(clienteRepository.findById(id).get());
 	}
 
