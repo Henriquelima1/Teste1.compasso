@@ -2,13 +2,18 @@ package com.compasso.test.controller.dto;
 
 import com.compasso.test.entidades.Cidade;
 
+import lombok.Data;
+import lombok.Getter;
+
+
+@Data
 public class CidadeDto {
 
-	private Long idCidade;
+	 private Long idCidade;
 
-	private String nome;
-	private String estado;
-	private String cep;
+	@Getter private String nome;
+	@Getter private String estado;
+	@Getter private String cep;
 
 	public CidadeDto(Cidade cidade) {
 		this.idCidade = cidade.getIdCidade();
@@ -18,25 +23,19 @@ public class CidadeDto {
 
 	}
 
-	public Long getIdCidade() {
-		return idCidade;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public String getEstado() {
-		return estado;
-	}
-
-	public String getCep() {
-		return cep;
-	}
+	
+	  public Long getIdCidade() { return idCidade; }
+	  /* 
+	 * public String getNome() { return nome; }
+	 * 
+	 * public String getEstado() { return estado; }
+	 * 
+	 * public String getCep() { return cep; }
+	 */
 
 	@Override
 	public String toString() {
-		return "Cidade Cadastrada [nome=" + nome + ", estado=" + estado + ", cep=" + cep + "]";
+		return "Cidade Cadastrada [nome=" + nome + "/n estado=" + estado + "/n cep=" + cep + "]";
 
 	}
 

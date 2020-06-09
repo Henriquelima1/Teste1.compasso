@@ -4,14 +4,20 @@ import java.time.LocalDateTime;
 
 import com.compasso.test.entidades.Cliente;
 
+import lombok.Data;
+import lombok.Getter;
+
+
+@Data
+
 public class ClienteDto {
 
-	private Long id;
+	 private Long id;
 
-	private String nome;
-	private String sexo;
-	private LocalDateTime dataNasci;
-	private int idade;
+	@Getter private String nome;
+	@Getter private String sexo;
+	@Getter private LocalDateTime dataNasci;
+	@Getter private int idade;
 
 	public ClienteDto(Cliente cliente) {
 		this.id = cliente.getId();
@@ -21,25 +27,17 @@ public class ClienteDto {
 		this.idade = cliente.getIdade();
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public String getSexo() {
-		return sexo;
-	}
-
-	public LocalDateTime getDataNasci() {
-		return dataNasci;
-	}
-
-	public int getIdade() {
-		return idade;
-	}
+	
+	  public Long getId() { return id; }
+	  /*
+	 * public String getNome() { return nome; }
+	 * 
+	 * public String getSexo() { return sexo; }
+	 * 
+	 * public LocalDateTime getDataNasci() { return dataNasci; }
+	 * 
+	 * public int getIdade() { return idade; }
+	 */
 
 //	//Metodo trocado de "List" para "Page" para paginação
 //	
